@@ -1,5 +1,6 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage as optimizeImage } from 'astro:assets';
+import Icon from './Icon.astro';
 import type { Product } from '../../types';
 import { lineById } from '../../data/lines';
 import { getImage } from '../../lib/images';
@@ -11,6 +12,7 @@ interface Props {
 }
 const { product } = Astro.props;
 const line = lineById(product.lineId);
+const thumb = await optimizeImage({ src: getImage(product.image), width: 120, format: 'webp' });
 ---
 
 <article class="card" style={`--line-color: ${line?.color ?? 'var(--blue)'}`}>
@@ -26,9 +28,25 @@ const line = lineById(product.lineId);
       <strong>{formatPrice(product.price)}</strong>
       <span>{product.unit}</span>
     </p>
-    <a class="card__cta" href={storeHref(`/productos/${product.id}`)} aria-label={`Ver ${product.name} en la tienda`}>
-      Ver producto
-    </a>
+    <div class="card__actions">
+      <a class="card__cta" href={storeHref(`/productos/${product.id}`)} aria-label={`Ver ${product.name} en la tienda`}>
+        Ver<span class="card__cta-long"> producto</span>
+      </a>
+      <button
+        class="card__add"
+        type="button"
+        data-add-to-cart
+        data-id={product.id}
+        data-name={product.name}
+        data-price={product.price}
+        data-unit={product.unit}
+        data-image={thumb.src}
+        aria-label={`Agregar ${product.name} al carrito`}
+      >
+        <span class="card__add-icon card__add-icon--cart"><Icon name="cart" size={22} /></span>
+        <span class="card__add-icon card__add-icon--done"><Icon name="check" size={22} /></span>
+      </button>
+    </div>
   </div>
 </article>
 
@@ -45,7 +63,17 @@ const line = lineById(product.lineId);
   .card__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.1rem 0.5rem; margin-top: auto; padding-top: 0.4rem; }
   .card__price strong { font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; }
   .card__price span { color: var(--ink-2); font-size: var(--fs-sm); }
-  .card__cta { margin-top: 0.5rem; align-self: flex-start; font-weight: 700; color: var(--blue); text-decoration: none; padding: 0.55rem 0; min-height: 2.75rem; display: inline-flex; align-items: center; }
+  .card__actions { display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; margin-top: 0.4rem; }
+  .card__cta-long { display: none; }
+  .card__cta { font-weight: 700; color: var(--blue); text-decoration: none; min-height: 2.75rem; display: inline-flex; align-items: center; }
+  .card__add { position: relative; flex-shrink: 0; width: 2.75rem; height: 2.75rem; border: 0; border-radius: 50%; background: var(--orange); color: var(--ink); cursor: pointer; display: grid; place-items: center; transition: transform 0.15s ease, background-color 0.15s ease; }
+  .card__add:hover { background: #ffa03d; transform: scale(1.06); }
+  .card__add:active { transform: scale(0.95); }
+  .card__add-icon { display: grid; place-items: center; grid-area: 1 / 1; }
+  .card__add-icon--done { display: none; }
+  .card__add[data-added] { background: var(--wa); }
+  .card__add[data-added] .card__add-icon--cart { display: none; }
+  .card__add[data-added] .card__add-icon--done { display: grid; }
   .card__cta::after { content: ' →'; margin-left: 0.3rem; transition: transform 0.15s; }
   .card__cta:hover { text-decoration: underline; }
   @media (min-width: 40rem) {
@@ -53,5 +81,6 @@ const line = lineById(product.lineId);
     .card__name { font-size: 1.4rem; }
     .card__desc { display: block; flex: 1; }
     .card__price strong { font-size: 1.6rem; }
+    .card__cta-long { display: inline; }
   }
 </style>

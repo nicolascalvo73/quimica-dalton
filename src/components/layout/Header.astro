@@ -35,9 +35,15 @@ const quote = whatsappHref(PRIMARY_LOCATION.whatsapp, 'Hola Química Dalton, qui
       </Button>
     </nav>
 
-    <button class="header__toggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="Abrir menú">
-      <Icon name="menu" size={26} />
-    </button>
+    <div class="header__actions">
+      <button class="header__cart" type="button" data-cart-open aria-haspopup="dialog" aria-controls="cart-drawer" aria-label="Abrir carrito">
+        <Icon name="cart" size={26} />
+        <span class="header__badge" data-cart-count hidden>0</span>
+      </button>
+      <button class="header__toggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="Abrir menú">
+        <Icon name="menu" size={26} />
+      </button>
+    </div>
   </div>
 </header>
 
@@ -47,6 +53,12 @@ const quote = whatsappHref(PRIMARY_LOCATION.whatsapp, 'Hola Química Dalton, qui
   .header__brand { display: block; flex-shrink: 0; }
   .header__brand :global(img) { height: 2.5rem; width: auto; }
 
+  .header__actions { display: flex; align-items: center; gap: 0.25rem; }
+  .header__cart { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border: 0; background: transparent; color: var(--blue-dark); border-radius: var(--radius-sm); cursor: pointer; }
+  .header__cart:hover { background: var(--blue-tint); }
+  .header__badge { position: absolute; top: 0.1rem; right: 0.05rem; min-width: 1.25rem; height: 1.25rem; padding: 0 0.3rem; border-radius: 999px; background: var(--orange); color: var(--ink); font-size: 0.75rem; font-weight: 800; line-height: 1.25rem; text-align: center; }
+  .header__badge[data-bump] { animation: bump 0.35s ease; }
+  @keyframes bump { 40% { transform: scale(1.35); } }
   .header__toggle { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border: 0; background: transparent; color: var(--blue-dark); border-radius: var(--radius-sm); cursor: pointer; }
 
   .nav { position: absolute; inset: var(--header-h) 0 auto 0; background: #fff; border-bottom: 1px solid var(--line); padding: 0.5rem var(--gutter) 1.25rem; display: none; flex-direction: column; gap: 0.75rem; box-shadow: var(--shadow); }
@@ -55,11 +67,12 @@ const quote = whatsappHref(PRIMARY_LOCATION.whatsapp, 'Hola Química Dalton, qui
   .nav__list a { display: flex; align-items: center; min-height: 2.9rem; text-decoration: none; font-weight: 600; border-bottom: 1px solid var(--line); }
   .nav__store a { color: var(--blue); }
 
-  @media (min-width: 62rem) {
+  @media (min-width: 72rem) {
     .header__toggle { display: none; }
-    .nav { position: static; display: flex; flex-direction: row; align-items: center; gap: 1.5rem; padding: 0; border: 0; box-shadow: none; background: transparent; }
-    .nav__list { flex-direction: row; gap: 1.4rem; }
-    .nav__list a { border: 0; min-height: 2.75rem; font-size: 0.95rem; }
+    .header__actions { margin-left: 0.25rem; }
+    .nav { position: static; display: flex; flex-direction: row; align-items: center; gap: 1.25rem; padding: 0; border: 0; box-shadow: none; background: transparent; }
+    .nav__list { flex-direction: row; gap: 1.15rem; }
+    .nav__list a { border: 0; min-height: 2.75rem; font-size: 0.95rem; white-space: nowrap; }
     .nav__list a:hover { color: var(--blue); }
   }
 </style>

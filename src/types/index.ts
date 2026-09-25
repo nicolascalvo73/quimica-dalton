@@ -45,4 +45,4 @@ export interface Product {
 export type IconName =
   | 'whatsapp' | 'phone' | 'pin' | 'clock' | 'mail' | 'arrow' | 'check' | 'menu' | 'close'
   | 'factory' | 'drop' | 'spray' | 'car' | 'flask' | 'tank' | 'box' | 'truck' | 'shield' | 'users' | 'star'
-  | 'instagram' | 'facebook';
+  | 'instagram' | 'facebook' | 'cart' | 'plus' | 'minus' | 'trash';
