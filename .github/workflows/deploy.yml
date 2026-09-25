@@ -19,7 +19,7 @@ jobs:
         env:
           # Publicación provisoria en github.io hasta configurar labs.mondistudio.com.ar
           SITE_URL: https://nicolascalvo73.github.io
-          BASE_PATH: /labs-quimica-dalton
+          BASE_PATH: /quimica-dalton
 
   deploy:
     needs: build

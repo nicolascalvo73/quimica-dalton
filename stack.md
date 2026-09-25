@@ -8,7 +8,7 @@
 
 ## Estructura de carpetas
 ```
-labs-quimica-dalton/
+quimica-dalton/
 ├─ astro.config.mjs        # site + base para GitHub Pages
 ├─ public/
 │  ├─ favicon.svg, robots.txt
@@ -58,7 +58,7 @@ Contraste AA (verificar naranja sobre blanco: usar texto oscuro sobre naranja), 
 - **Contacto:** botón/links de WhatsApp por sede (`wa.me` con mensaje predefinido), `tel:` y `mailto:`. Formulario opcional vía servicio externo sólo si se aprueba.
 
 ## Deploy (Paso 5, sólo con tu confirmación)
-- Repo independiente: **`labs-quimica-dalton`**.
+- Repo independiente: **`quimica-dalton`** (renombrado desde `labs-quimica-dalton` para que Pages sirva la ruta `/quimica-dalton`).
 - GitHub Pages en `labs.mondistudio.com.ar/quimica-dalton` → en `astro.config.mjs`: `site: 'https://labs.mondistudio.com.ar'`, `base: '/quimica-dalton'`; todas las rutas de assets respetan `base`.
 - GitHub Actions con `withastro/action` + `deploy-pages`.
 - No tocar `mondistudio.com.ar/labs` (Mondilabs).
