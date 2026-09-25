@@ -1,0 +1,20 @@
+---
+import { PRIMARY_LOCATION } from '../../data/site';
+import { whatsappHref } from '../../lib/whatsapp';
+import Icon from '../ui/Icon.astro';
+
+const href = whatsappHref(PRIMARY_LOCATION.whatsapp, 'Hola Química Dalton, quería hacer una consulta.');
+---
+
+<a class="fab" href={href} target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+  <Icon name="whatsapp" size={30} />
+  <span class="fab__label">Escribinos</span>
+</a>
+
+<style>
+  .fab { position: fixed; right: 1rem; bottom: 1rem; z-index: 60; display: inline-flex; align-items: center; gap: 0.5rem; height: 3.5rem; padding: 0 1.1rem; border-radius: 999px; background: var(--wa); color: #06210f; font-weight: 700; text-decoration: none; box-shadow: 0 6px 20px rgb(18 140 74 / 45%); transition: transform 0.15s ease; }
+  .fab:hover { transform: scale(1.04); }
+  .fab__label { display: none; }
+  @media (min-width: 40rem) { .fab__label { display: inline; } }
+  @media (max-width: 39.99rem) { .fab { width: 3.5rem; padding: 0; justify-content: center; } }
+</style>

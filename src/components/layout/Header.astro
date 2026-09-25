@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/images/logo-nuevo.webp';
+import { PRIMARY_LOCATION, SITE } from '../../data/site';
+import { whatsappHref } from '../../lib/whatsapp';
+import { storeHref, withBase } from '../../lib/url';
+import Icon from '../ui/Icon.astro';
+import Button from '../ui/Button.astro';
+
+const NAV = [
+  { label: 'Productos', href: '#lineas' },
+  { label: 'Descamiva', href: '#descamiva' },
+  { label: 'Cómo comprar', href: '#como-comprar' },
+  { label: 'Sucursales', href: '#sucursales' },
+  { label: 'Revendedores', href: '#revendedores' },
+];
+const quote = whatsappHref(PRIMARY_LOCATION.whatsapp, 'Hola Química Dalton, quiero pedir un presupuesto.');
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a class="header__brand" href={withBase('/')} aria-label={`${SITE.name}, inicio`}>
+      <Image src={logo} alt={SITE.name} height={44} loading="eager" />
+    </a>
+
+    <nav id="nav" class="nav" aria-label="Principal" data-open="false">
+      <ul class="nav__list">
+        {NAV.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+        <li class="nav__store"><a href={storeHref()}>Tienda online</a></li>
+      </ul>
+      <Button class="nav__cta" variant="accent" href={quote} target="_blank" rel="noopener">
+        Pedir presupuesto
+      </Button>
+    </nav>
+
+    <button class="header__toggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="Abrir menú">
+      <Icon name="menu" size={26} />
+    </button>
+  </div>
+</header>
+
+<style>
+  .header { position: sticky; top: 0; z-index: 50; background: rgb(255 255 255 / 94%); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .header__inner { display: flex; align-items: center; justify-content: space-between; height: var(--header-h); gap: 1rem; }
+  .header__brand { display: block; flex-shrink: 0; }
+  .header__brand :global(img) { height: 2.5rem; width: auto; }
+
+  .header__toggle { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border: 0; background: transparent; color: var(--blue-dark); border-radius: var(--radius-sm); cursor: pointer; }
+
+  .nav { position: absolute; inset: var(--header-h) 0 auto 0; background: #fff; border-bottom: 1px solid var(--line); padding: 0.5rem var(--gutter) 1.25rem; display: none; flex-direction: column; gap: 0.75rem; box-shadow: var(--shadow); }
+  .nav[data-open='true'] { display: flex; }
+  .nav__list { display: flex; flex-direction: column; }
+  .nav__list a { display: flex; align-items: center; min-height: 2.9rem; text-decoration: none; font-weight: 600; border-bottom: 1px solid var(--line); }
+  .nav__store a { color: var(--blue); }
+
+  @media (min-width: 62rem) {
+    .header__toggle { display: none; }
+    .nav { position: static; display: flex; flex-direction: row; align-items: center; gap: 1.5rem; padding: 0; border: 0; box-shadow: none; background: transparent; }
+    .nav__list { flex-direction: row; gap: 1.4rem; }
+    .nav__list a { border: 0; min-height: 2.75rem; font-size: 0.95rem; }
+    .nav__list a:hover { color: var(--blue); }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.header__toggle');
+  const nav = document.getElementById('nav');
+  if (toggle && nav) {
+    const set = (open: boolean) => {
+      nav.dataset.open = String(open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    };
+    toggle.addEventListener('click', () => set(nav.dataset.open !== 'true'));
+    nav.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) set(false);
+    });
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && set(false));
+  }
+</script>

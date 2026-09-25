@@ -1,0 +1,46 @@
+---
+import { SITE } from '../../data/site';
+import Icon from '../ui/Icon.astro';
+
+const years = new Date().getFullYear() - SITE.foundedYear;
+const REASONS = [
+  { icon: 'factory', title: 'Fabricación propia', text: 'Producimos en Córdoba. Control de calidad desde la fórmula hasta el envase.' },
+  { icon: 'shield', title: `${years} años de trayectoria`, text: `Desde ${SITE.foundedYear} abastecemos industrias, comercios e instituciones.` },
+  { icon: 'users', title: 'Asesoramiento técnico', text: 'Te ayudamos a elegir el producto y la dilución justa para tu caso.' },
+  { icon: 'truck', title: 'Envíos', text: 'Coordinamos entregas en Córdoba y hacia el interior.' },
+] as const;
+---
+
+<section class="section section--alt" aria-labelledby="why-title">
+  <div class="container">
+    <div class="promo" role="note">
+      <strong>{SITE.promo.label}</strong>
+      <span>Consultá condiciones en la sucursal.</span>
+    </div>
+    <header class="section__head">
+      <p class="section__eyebrow">Por qué Dalton</p>
+      <h2 id="why-title" class="section__title">Fábrica que responde</h2>
+    </header>
+    <ul class="reasons">
+      {REASONS.map((r) => (
+        <li>
+          <span class="reasons__icon"><Icon name={r.icon} size={26} /></span>
+          <h3>{r.title}</h3>
+          <p>{r.text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .promo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.9rem; background: var(--yellow); color: var(--ink); border-radius: var(--radius); padding: 0.9rem 1.25rem; margin-bottom: clamp(2rem, 1rem + 3vw, 3.5rem); }
+  .promo strong { font-family: var(--font-display); font-size: 1.6rem; text-transform: uppercase; line-height: 1.1; }
+  .reasons { display: grid; gap: 1.5rem; }
+  .reasons li { display: grid; gap: 0.4rem; }
+  .reasons__icon { display: grid; place-items: center; width: 3.25rem; height: 3.25rem; border-radius: 12px; background: var(--orange); color: var(--ink); }
+  .reasons h3 { font-size: 1.5rem; text-transform: uppercase; margin-top: 0.4rem; }
+  .reasons p { color: var(--ink-2); }
+  @media (min-width: 40rem) { .reasons { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 64rem) { .reasons { grid-template-columns: repeat(4, 1fr); } }
+</style>

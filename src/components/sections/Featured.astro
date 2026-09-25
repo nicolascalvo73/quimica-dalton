@@ -1,0 +1,34 @@
+---
+import products from '../../data/products.json';
+import type { Product } from '../../types';
+import { storeHref } from '../../lib/url';
+import ProductCard from '../ui/ProductCard.astro';
+import Button from '../ui/Button.astro';
+
+const featured = (products as Product[]).filter((p) => p.featured);
+---
+
+<section id="destacados" class="section section--alt" aria-labelledby="destacados-title">
+  <div class="container">
+    <header class="section__head">
+      <p class="section__eyebrow">Los más pedidos</p>
+      <h2 id="destacados-title" class="section__title">Productos destacados</h2>
+      <p class="section__lead">Precios de ejemplo para esta propuesta. Consultá stock y precio final por WhatsApp o en la sucursal.</p>
+    </header>
+
+    <ul class="grid">
+      {featured.map((p) => (<li><ProductCard product={p} /></li>))}
+    </ul>
+
+    <div class="more">
+      <Button variant="primary" size="lg" href={storeHref()}>Ver todo el catálogo</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .more { margin-top: 2rem; display: flex; justify-content: center; }
+  @media (min-width: 40rem) { .grid { gap: 1rem; } }
+  @media (min-width: 64rem) { .grid { grid-template-columns: repeat(4, 1fr); } }
+</style>

@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import bag from '../../assets/images/pozociego.webp';
+import { LOCATIONS, PRIMARY_LOCATION, SITE } from '../../data/site';
+import { whatsappHref } from '../../lib/whatsapp';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+const ask = whatsappHref(PRIMARY_LOCATION.whatsapp, 'Hola Química Dalton, quiero saber dónde conseguir Descamiva.');
+const POINTS = ['Reactiva la actividad biológica del pozo', 'Ayuda a que no se llene ni se impermeabilice', 'Fabricación propia, bolsa de 20 kg'];
+---
+
+<section id="descamiva" class="descamiva" aria-labelledby="descamiva-title">
+  <div class="container descamiva__grid">
+    <div class="descamiva__media">
+      <Image src={bag} alt="Bolsa de Descamiva reactivador de pozos negros, 20 kg" widths={[320, 480, 640]} sizes="(min-width: 62rem) 26rem, 70vw" loading="lazy" />
+    </div>
+    <div class="descamiva__copy">
+      <p class="section__eyebrow">Marca propia</p>
+      <h2 id="descamiva-title" class="section__title">¿Tu pozo se llenó? Activalo con Descamiva</h2>
+      <p class="section__lead">El reactivador de pozos negros de Química Dalton. Simple de usar y pensado para hogares, comercios e industrias sin cloacas.</p>
+      <ul class="points">
+        {POINTS.map((p) => (<li><Icon name="check" size={22} /><span>{p}</span></li>))}
+      </ul>
+      <div class="descamiva__cta">
+        <Button variant="whatsapp" size="lg" href={ask} target="_blank" rel="noopener"><Icon name="whatsapp" size={22} /> ¿Dónde lo consigo?</Button>
+        <Button variant="light" size="lg" href={SITE.descamivaForum} target="_blank" rel="noopener">Foro de opiniones</Button>
+      </div>
+      <p class="descamiva__note">Retiro en {LOCATIONS[0].name.toLowerCase()} y en {LOCATIONS[1].name.toLowerCase()}. Descamiva® es marca registrada.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .descamiva { background: var(--blue-dark); color: #fff; padding-block: clamp(3rem, 2rem + 5vw, 6rem); }
+  .descamiva__grid { display: grid; gap: 2.5rem; align-items: center; }
+  .descamiva__media { background: #fff; border-radius: var(--radius); padding: 1.5rem; max-width: 26rem; margin-inline: auto; box-shadow: 0 20px 50px rgb(0 0 0 / 30%); }
+  .descamiva__media :global(img) { width: 100%; height: auto; max-height: 26rem; object-fit: contain; }
+  .descamiva :global(.section__eyebrow) { color: var(--yellow); }
+  .descamiva :global(.section__title) { color: #fff; }
+  .descamiva :global(.section__lead) { color: #d3e2f4; }
+  .points { display: grid; gap: 0.6rem; margin-top: 1.4rem; }
+  .points li { display: flex; gap: 0.6rem; align-items: flex-start; }
+  .points :global(svg) { flex-shrink: 0; color: var(--yellow); margin-top: 0.15rem; }
+  .descamiva__cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+  .descamiva__note { margin-top: 1rem; font-size: var(--fs-sm); color: #b5cbe4; }
+  @media (min-width: 62rem) { .descamiva__grid { grid-template-columns: 0.8fr 1.2fr; } }
+</style>

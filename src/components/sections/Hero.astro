@@ -1,0 +1,101 @@
+---
+import { Image } from 'astro:assets';
+import mascot from '../../assets/images/dr-dalton.webp';
+import { getImage } from '../../lib/images';
+import { LOCATIONS, PRIMARY_LOCATION, SITE } from '../../data/site';
+import { whatsappHref } from '../../lib/whatsapp';
+import { storeHref } from '../../lib/url';
+import { formatCount, formatRating } from '../../lib/format';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+const rating = PRIMARY_LOCATION.googleRating;
+const years = new Date().getFullYear() - SITE.foundedYear;
+const wa = whatsappHref(PRIMARY_LOCATION.whatsapp, 'Hola Química Dalton, quiero pedir un presupuesto.');
+const BUYERS = [
+  { label: 'Industria y talleres', href: '#lineas' },
+  { label: 'Comercios e instituciones', href: '#lineas' },
+  { label: 'Hogar y piscinas', href: '#lineas' },
+];
+const floats = [
+  { image: 'limpiamotores', alt: 'Motor limpio', cls: 'float--a' },
+  { image: 'perfumes-para-ropa', alt: 'Perfumes para ropa', cls: 'float--b' },
+  { image: 'productos-para-piscinas', alt: 'Productos para piscinas', cls: 'float--c' },
+];
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <p class="hero__eyebrow">Fábrica propia · Córdoba · Desde {SITE.foundedYear}</p>
+      <h1 id="hero-title">Química para <em>cada trabajo.</em></h1>
+      <p class="hero__lead">
+        Fabricamos y vendemos productos químicos industriales, de limpieza, para piscinas y del automotor.
+        Más de {years} años resolviendo lo que necesita tu planta, tu comercio o tu casa.
+      </p>
+      <div class="hero__cta">
+        <Button variant="accent" size="lg" href={storeHref()}>
+          Ver productos <Icon name="arrow" size={20} />
+        </Button>
+        <Button variant="whatsapp" size="lg" href={wa} target="_blank" rel="noopener">
+          <Icon name="whatsapp" size={22} /> Pedir presupuesto
+        </Button>
+      </div>
+      <ul class="hero__buyers" aria-label="Elegí según quién sos">
+        {BUYERS.map((b) => (<li><a href={b.href}>{b.label}</a></li>))}
+      </ul>
+    </div>
+
+    <div class="hero__visual" aria-hidden="false">
+      <div class="hero__panel">
+        <Image class="hero__mascot" src={mascot} alt="Dr. Dalton, la mascota de Química Dalton" widths={[260, 351]} sizes="(min-width: 62rem) 22rem, 60vw" loading="eager" fetchpriority="high" />
+        {floats.map((f) => (
+          <div class:list={['float', f.cls]}>
+            <Image src={getImage(f.image)} alt={f.alt} widths={[150, 230]} sizes="9rem" loading="eager" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust" aria-label="Datos de confianza">
+  <ul class="container trust__list">
+    <li><strong>{years}</strong><span>años fabricando</span></li>
+    <li><strong>{SITE.productCount}</strong><span>productos</span></li>
+    <li><strong>{LOCATIONS.length}</strong><span>sucursales en Córdoba</span></li>
+    <li><strong>{formatRating(rating.value)} <Icon name="star" size={20} /></strong><span>en Google · {formatCount(rating.count)} opiniones</span></li>
+  </ul>
+</section>
+
+<style>
+  .hero { background: linear-gradient(180deg, var(--blue-tint) 0%, #fff 100%); padding-block: clamp(2rem, 1rem + 5vw, 5rem) clamp(2rem, 1rem + 4vw, 4rem); overflow: clip; }
+  .hero__grid { display: grid; gap: 2.5rem; align-items: center; }
+  .hero__eyebrow { display: inline-block; background: var(--blue); color: #fff; font-weight: 600; font-size: var(--fs-sm); padding: 0.3rem 0.85rem; border-radius: 999px; margin-bottom: 1.1rem; }
+  h1 { font-size: var(--fs-4xl); text-transform: uppercase; color: var(--blue-dark); }
+  h1 em { font-style: normal; color: var(--orange-dark); display: block; }
+  .hero__lead { margin-top: 1.1rem; font-size: var(--fs-lg); color: var(--ink-2); max-width: 34rem; }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+  .hero__buyers { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .hero__buyers a { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 1rem; border: 1px solid var(--line); background: #fff; border-radius: 999px; font-size: var(--fs-sm); font-weight: 600; text-decoration: none; }
+  .hero__buyers a:hover { border-color: var(--blue); color: var(--blue); }
+
+  .hero__panel { position: relative; aspect-ratio: 1 / 1; max-width: 26rem; margin-inline: auto; background: radial-gradient(circle at 50% 45%, #fff 0 38%, #cfe2f7 100%); border-radius: 50%; display: grid; place-items: center; }
+  .hero__panel :global(.hero__mascot) { width: 62%; height: auto; mix-blend-mode: multiply; }
+  .float { position: absolute; width: 32%; background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow); border: 1px solid var(--line); overflow: hidden; }
+  .float--a { top: 2%; right: -4%; transform: rotate(4deg); }
+  .float--b { bottom: 6%; left: -6%; transform: rotate(-5deg); }
+  .float--c { bottom: -2%; right: 6%; transform: rotate(3deg); }
+
+  .trust { background: var(--blue); color: #fff; }
+  .trust__list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; padding-block: 1.25rem; }
+  .trust__list li { display: flex; flex-direction: column; }
+  .trust__list strong { font-family: var(--font-display); font-size: 2rem; line-height: 1; display: inline-flex; align-items: center; gap: 0.3rem; color: var(--yellow); }
+  .trust__list strong :global(svg) { fill: currentColor; }
+  .trust__list span { font-size: var(--fs-sm); color: #d8e6f7; }
+
+  @media (min-width: 62rem) {
+    .hero__grid { grid-template-columns: 1.15fr 0.85fr; }
+    .trust__list { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>

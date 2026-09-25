@@ -1,0 +1,34 @@
+---
+import { PRIMARY_LOCATION, SITE } from '../../data/site';
+import { whatsappHref } from '../../lib/whatsapp';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+const wa = whatsappHref(PRIMARY_LOCATION.whatsapp, 'Hola Química Dalton, me interesa ser revendedor de Descamiva.');
+---
+
+<section id="revendedores" class="resellers" aria-labelledby="rev-title">
+  <div class="container resellers__inner">
+    <div>
+      <p class="section__eyebrow">Revendedores</p>
+      <h2 id="rev-title" class="section__title">Sumate como distribuidor de Descamiva</h2>
+      <p class="section__lead">Todavía hay ciudades de Argentina donde no tenemos revendedores. Mínima inversión, mínimos requisitos y buena rentabilidad.</p>
+    </div>
+    <div class="resellers__cta">
+      <Button variant="accent" size="lg" href={wa} target="_blank" rel="noopener"><Icon name="whatsapp" size={22} /> Consultar por WhatsApp</Button>
+      <Button variant="light" size="lg" href={`mailto:${SITE.email}?subject=Quiero ser revendedor de Descamiva`}><Icon name="mail" size={22} /> {SITE.email}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .resellers { background: var(--orange); color: var(--ink); padding-block: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
+  .resellers :global(.section__eyebrow) { color: var(--ink); }
+  .resellers :global(.section__title) { color: var(--ink); }
+  .resellers :global(.section__lead) { color: #3a2500; }
+  .resellers__inner { display: grid; gap: 1.75rem; align-items: center; }
+  .resellers__cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .resellers :global(.btn--accent) { background: var(--ink); color: #fff; }
+  .resellers :global(.btn--accent:hover) { background: #1c2f4d; }
+  @media (min-width: 62rem) { .resellers__inner { grid-template-columns: 1.3fr 1fr; } .resellers__cta { justify-content: flex-end; } }
+</style>

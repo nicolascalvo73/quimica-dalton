@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'a'> {
+  variant?: 'primary' | 'accent' | 'whatsapp' | 'ghost' | 'light';
+  size?: 'md' | 'lg';
+}
+const { variant = 'primary', size = 'md', class: className, ...rest } = Astro.props;
+---
+
+<a class:list={['btn', `btn--${variant}`, `btn--${size}`, className]} {...rest}>
+  <slot />
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: var(--fs-base);
+    line-height: 1.2;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+  .btn--lg { min-height: 3.25rem; padding-inline: 1.6rem; font-size: var(--fs-lg); }
+  .btn--primary { background: var(--blue); color: #fff; }
+  .btn--primary:hover { background: var(--blue-dark); }
+  .btn--accent { background: var(--orange); color: var(--ink); }
+  .btn--accent:hover { background: #ffa03d; }
+  .btn--whatsapp { background: var(--wa); color: #06210f; }
+  .btn--whatsapp:hover { background: #3be07a; }
+  .btn--ghost { background: transparent; color: var(--blue); border-color: var(--blue); }
+  .btn--ghost:hover { background: var(--blue-tint); }
+  .btn--light { background: #fff; color: var(--blue-dark); }
+  .btn--light:hover { background: var(--blue-tint); }
+</style>

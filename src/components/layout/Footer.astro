@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/images/logo-nuevo.webp';
+import { LOCATIONS, SITE } from '../../data/site';
+import { formatSchedule } from '../../lib/hours';
+import { storeHref } from '../../lib/url';
+import Icon from '../ui/Icon.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <div class="footer__logo"><Image src={logo} alt={SITE.name} height={44} loading="lazy" /></div>
+      <p>Fábrica de productos químicos en Córdoba desde {SITE.foundedYear}. Industria, limpieza, piscinas y droguería.</p>
+      <ul class="footer__social">
+        <li><a href={SITE.instagram} target="_blank" rel="noopener" aria-label={`Instagram ${SITE.instagramHandle}`}><Icon name="instagram" /></a></li>
+        <li><a href={SITE.facebook} target="_blank" rel="noopener" aria-label="Facebook de Química Dalton"><Icon name="facebook" /></a></li>
+        <li><a href={`mailto:${SITE.email}`} aria-label={`Escribir a ${SITE.email}`}><Icon name="mail" /></a></li>
+      </ul>
+    </div>
+
+    {LOCATIONS.map((loc) => (
+      <div class="footer__col">
+        <h2 class="footer__title">{loc.name}</h2>
+        <address>
+          {loc.street}<br />{loc.locality}<br />
+          <a href={`tel:${loc.phoneHref}`}>{loc.phone}</a>
+        </address>
+        <ul class="footer__hours">
+          {formatSchedule(loc.schedule).map((row) => (
+            <li><span>{row.days}</span> {row.hours}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+
+    <div class="footer__col">
+      <h2 class="footer__title">Comprar</h2>
+      <ul class="footer__links">
+        <li><a href={storeHref()}>Tienda online</a></li>
+        <li><a href="#lineas">Líneas de productos</a></li>
+        <li><a href="#descamiva">Descamiva</a></li>
+        <li><a href="#revendedores">Ser revendedor</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer__legal">
+    <p>© {SITE.foundedYear}–{year} {SITE.name}. Descamiva® es marca registrada.</p>
+    <p>Propuesta de rediseño de <a href="https://mondistudio.com.ar" target="_blank" rel="noopener">Mondi Studio</a>. Los precios mostrados son de ejemplo.</p>
+  </div>
+</footer>
+
+<style>
+  .footer { background: var(--ink); color: #d6deea; padding-top: 3rem; font-size: var(--fs-sm); }
+  .footer__grid { display: grid; gap: 2rem; grid-template-columns: 1fr; padding-bottom: 2.5rem; }
+  .footer__logo { background: #fff; display: inline-block; padding: 0.5rem 0.9rem; border-radius: var(--radius-sm); margin-bottom: 1rem; }
+  .footer__logo :global(img) { height: 2.25rem; width: auto; }
+  .footer__brand p { max-width: 24rem; }
+  .footer__social { display: flex; gap: 0.5rem; margin-top: 1rem; }
+  .footer__social a { display: inline-flex; width: 2.75rem; height: 2.75rem; align-items: center; justify-content: center; border-radius: 50%; background: rgb(255 255 255 / 10%); color: #fff; }
+  .footer__social a:hover { background: var(--orange); color: var(--ink); }
+  .footer__title { font-size: 1.35rem; text-transform: uppercase; color: #fff; margin-bottom: 0.75rem; }
+  .footer address { font-style: normal; line-height: 1.7; }
+  .footer a { color: #fff; }
+  .footer__hours { margin-top: 0.75rem; display: grid; gap: 0.15rem; }
+  .footer__hours span { display: inline-block; min-width: 4.6rem; font-weight: 600; color: #fff; }
+  .footer__links { display: grid; gap: 0.1rem; }
+  .footer__links a { display: inline-flex; min-height: 2.5rem; align-items: center; text-decoration: none; }
+  .footer__links a:hover { text-decoration: underline; }
+  .footer__legal { border-top: 1px solid rgb(255 255 255 / 12%); padding-block: 1.25rem 5rem; display: grid; gap: 0.35rem; color: #9fb0c6; }
+
+  @media (min-width: 48rem) { .footer__grid { grid-template-columns: 1fr 1fr; } .footer__brand { grid-column: 1 / -1; } }
+  @media (min-width: 64rem) { .footer__grid { grid-template-columns: 1.4fr 1fr 1fr 0.8fr; } .footer__brand { grid-column: auto; } .footer__legal { grid-template-columns: 1fr auto; } }
+</style>

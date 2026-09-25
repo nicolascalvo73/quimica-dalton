@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import mascot from '../assets/images/dr-dalton.webp';
+import { withBase } from '../lib/url';
+---
+
+<BaseLayout title="Página no encontrada | Química Dalton" noindex>
+  <section class="section">
+    <div class="container nf">
+      <Image class="nf__img" src={mascot} alt="Dr. Dalton" width={200} loading="eager" />
+      <h1>Esta fórmula no existe</h1>
+      <p>La página que buscás no está. Volvé al inicio y encontrá lo que necesitás.</p>
+      <Button variant="primary" size="lg" href={withBase('/')}>Ir al inicio</Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf { display: grid; gap: 1rem; justify-items: center; text-align: center; padding-block: 2rem; }
+  .nf :global(.nf__img) { mix-blend-mode: multiply; }
+  h1 { font-size: var(--fs-3xl); text-transform: uppercase; color: var(--blue-dark); }
+  p { color: var(--ink-2); }
+</style>

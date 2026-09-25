@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "fecha_research": "2026-09-25",
+    "negocio": "Química Dalton",
+    "ciudad": "Córdoba, Argentina",
+    "fuentes_revisadas": {
+      "web_actual": "https://www.quimicadalton.com/ (home, contacto, ubicacion, secciones de productos, drogueria industrial)",
+      "instagram": "https://www.instagram.com/quimicaltoncba → @quimicadaltoncba (perfil público, sin login: bio truncada, highlights, grilla)",
+      "facebook": "https://www.facebook.com/quimicadalton/ (intro visible detrás del modal de login)",
+      "web_search": "directorios (exportadoresdecordoba, limpiezas.com.ar, pulkrolimpieza, latamportal)"
+    },
+    "fuentes_no_revisadas": [
+      "Google Maps / Google Business (no consultado; horarios y reseñas de Maps quedan pendientes)",
+      "Facebook perfil alternativo id=100089879234089 (no abierto)",
+      "Contenido de posteos individuales de Instagram/Facebook (requieren login)"
+    ]
+  },
+
+  "bloque_1_datos_duros": {
+    "nombre": "Química Dalton",
+    "marca_secundaria": ["Descamiva (reactivador de pozos negros, marca registrada)", "Daltonbac", "Dr. Dalton (mascota)"],
+    "fundacion": 1978,
+    "rubro": "Fábrica de productos químicos industriales, de limpieza, piscinas, cosmética del automotor y droguería industrial",
+    "sedes": [
+      {
+        "tipo": "Casa central / Administración / Depósito / Fábrica",
+        "direccion": "Leopoldo A. Casavega 3089, Villa Aspasia, Córdoba (CP 5010)",
+        "telefono": "(+54) 351 894-9853",
+        "whatsapp": "351 555-7944",
+        "nota_contradiccion": "Etiqueta del packaging y directorios muestran (0351) 466-4934; la web y FB actuales usan 894-9853. Se usa el de la web actual."
+      },
+      {
+        "tipo": "Sucursal Centro",
+        "direccion": "Rivadavia 695 (esq. Libertad), X5000IPM Córdoba",
+        "telefono": "(+54) 351 421-6691",
+        "whatsapp": "351 529-8887 (+54 9 351 529-8887, el mismo del botón flotante de la web y de Facebook)"
+      }
+    ],
+    "email": ["info@quimicadalton.com (web + Facebook)", "quimicaltonva@gmail.com (aparece en header de la web, posible typo: 'quimicaltonva'; usar info@ salvo confirmación)"],
+    "horarios": {
+      "fuente": "Google Maps (consultado 2026-09-25), fichas separadas por sede",
+      "fabrica": {"lunes_a_viernes": "8:00-13:00 y 15:00-18:00", "sabado": "9:00-13:00", "domingo": "Cerrado", "google_rating": "4.0 (68 opiniones)", "google_direccion": "Leopoldo Antonio Casavega 3089, X5011CTQ Córdoba", "coords": [-31.4441189, -64.2510785]},
+      "sucursal_centro": {"lunes_a_viernes": "8:30-17:30 (corrido)", "sabado": "9:00-13:00", "domingo": "Cerrado", "google_rating": "4.4 (1.284 opiniones)", "google_direccion": "Rivadavia 695, X5021KEM Córdoba", "coords": [-31.4084579, -64.1794569]}
+    },
+    "horarios_nota": "Contradice directorio cylex (Centro 8:30-13 y 14:30-18); prevalece Google por jerarquía de fuentes.",
+    "promos_y_servicios_detectados": ["Martes 10% DTO (highlight IG)", "Envíos (highlight IG)", "Programa de revendedores/distribuidores de Descamiva"],
+    "redes": {
+      "instagram": {"handle": "@quimicadaltoncba", "seguidores": "88K", "activa": true, "posteos_recientes": "grilla con posteos/reels recientes (códigos de posteo tipo DdjhK7… = actividad reciente)"},
+      "facebook": {"url": "https://www.facebook.com/quimicadalton", "recomendacion": "94% recomiendan (397 reseñas)", "tambien": "http://www.facebook.com/daltonface (link viejo en la web)"},
+      "threads": "@quimicadaltoncba",
+      "sitios_relacionados": ["descamiva.com.ar (foro de opiniones)", "quimicadalton.com.ar (dominio alterno)"]
+    },
+    "sitio_actual": "https://www.quimicadalton.com/"
+  },
+
+  "bloque_2_diagnostico_web_actual": {
+    "tiene_web": true,
+    "cms_stack": "Joomla con template joomspirit_76 (antiguo)",
+    "mobile_friendly": "Parcial: tiene meta viewport y media_queries.css, pero el layout es de 2 columnas de escritorio con sidebar, botones y textos cortados ('impermeabilizad'), y ie7/ie8/ie9 css legacy. Verificar en 375px en el paso de revisión.",
+    "velocidad": "TTFB ~0.68s, HTML 24 KB. Carga rápida del documento, pero usa GIFs para el carrusel de productos y JPG sin optimizar (logo 80 KB). No se midió Lighthouse.",
+    "boton_contacto": "Sí: botón flotante de WhatsApp (verde) visible. Formulario de contacto con 4 campos. Email ofuscado con JS.",
+    "seo_basico": {
+      "title": "Quimica Dalton: Fabrica de productos quimicos (sin tildes, sin ciudad)",
+      "description": "Presente, orientada a Descamiva/Daltonbac; no menciona Córdoba, droguería ni piscinas",
+      "keywords": "meta keywords presente (obsoleta)",
+      "problemas": ["Sin tildes en título/textos", "Sin ciudad en el title", "Encabezados y H1 no jerarquizados", "Páginas de producto con títulos tipo 'Amoniaco en Córdoba' (buen intento de SEO local, conservar la intención)"]
+    },
+    "contenido_actualizado": "Desactualizado / mixto: footer dice 1978-2026 (auto), pero no hay fechas de novedades; encuesta de 'opinión' y foro externo; home enfocada casi 100% en Descamiva y no comunica el resto (más de 1000 productos).",
+    "problemas_ux": [
+      "Home = un solo producto (Descamiva); el resto del catálogo queda escondido en un sidebar de links azules chicos",
+      "Estética 'Joomla 2010' con tipografías del sistema y celestes planos",
+      "'Lista de precios: Suscribite' y 'Pozo negro impermeabilizado' como banners con texto cortado",
+      "Mapa como imagen estática; no hay link claro a Google Maps en home",
+      "Sin jerarquía B2B vs consumidor final"
+    ],
+    "oportunidades": [
+      "Home con propuesta clara por línea (industrial / limpieza / piscinas / automotor / drogueria / pozos)",
+      "Catálogo navegable y buscable con CTA 'Pedir precio por WhatsApp'",
+      "Destacar 46+ años de trayectoria y fabricación propia",
+      "Sección revendedores/distribuidores de Descamiva",
+      "Unificar las 2 sedes con WhatsApp propio por sede"
+    ]
+  },
+
+  "bloque_3_perfil_estetico": {
+    "logo": {
+      "descripcion": "Monograma 'QD' en naranja + azul con volumen/3D, 'QUÍMICA DALTON' en azul y naranja, mascota Dr. Dalton (químico con delantal, dentro de círculo amarillo/azul)",
+      "url_web": "https://www.quimicadalton.com/images/stories/logo%20nuevo.jpg",
+      "otros_assets": [
+        "https://www.quimicadalton.com/images/stories/dr%20dalton.jpg",
+        "https://www.quimicadalton.com/images/stories/pozociego.png",
+        "https://www.quimicadalton.com/images/stories/descamiva-funciona.gif"
+      ]
+    },
+    "paleta_aprox": {
+      "nota": "Valores estimados a ojo de capturas de logo/IG y CSS del template; validar con muestreo real de imagen en el paso de diseño.",
+      "primaria_azul_marca": "~#0B5CAD (azul del logo)",
+      "secundaria_naranja_marca": "~#F28C1E (naranja del logo)",
+      "acento_amarillo_mascota": "~#F5B81C",
+      "azules_de_la_web_actual": ["#005383", "#028bc0", "#10b0d0"],
+      "neutros": "fondos blancos, grises claros"
+    },
+    "estilo_fotografico": "No es fotografía de local: IG usa piezas gráficas de producto (packshots 3D de envases sobre fondos de color saturado, títulos tipográficos gruesos como 'Limpieza visible, acción desinfectante 99,9%', 'Perfumes textiles', 'Cloro para piscinas', 'Tu POZO se LLENÓ'), más ilustraciones de la mascota Dr. Dalton y reels. Cada línea tiene color propio (amarillo cloro, verdes/rosas perfumes, etc.).",
+    "tono_comunicacion": "Cercano, directo, comercial y didáctico; voseo argentino ('Suscribite', 'Activelo', 'Consultanos'); mensajes de beneficio corto + dato técnico (99,9% de bacterias); promos puntuales (Martes 10% DTO).",
+    "instagram_highlights": ["Lybacter Gel", "Cloro PURO", "APC", "Martes 10% DTO", "Soda cáustica", "Servilletas", "Secamanos", "Envíos", "Flit", "Derribante"],
+    "referencias_externas": {
+      "estado": "PENDIENTE: no se buscaron webs de referencia del rubro en esta pasada. Se proponen en el paso de diseño (o podés aportarlas vos).",
+      "criterio_de_busqueda": "fabricantes/distribuidores de químicos de limpieza e industriales B2B+B2C con catálogo por categorías y CTA de cotización"
+    }
+  },
+
+  "bloque_4_vertical": {
+    "vertical_detectada": "catalogo",
+    "confianza": "alta",
+    "justificacion": [
+      "Más de 1000 productos organizados por categorías; menús de 'Productos' y páginas por producto",
+      "Sin agenda/turnos ni evento/entradas",
+      "El modelo comercial actual es 'Lista de precios: Suscribite' + consulta por WhatsApp/teléfono/sucursal, es decir catálogo con cotización, sin carrito ni precios públicos"
+    ],
+    "no_aplica": ["reservas_turnos", "evento_entradas"],
+    "decision_pendiente_no_bloqueante": "Enlatado del catálogo (Tienda Nube vs Shopify) según la skill se elige manualmente. Dado que no hay precios públicos, alternativa: catálogo estático en Astro con 'Consultar por WhatsApp'. Se decide en el checkpoint de diseño."
+  },
+
+  "bloque_5_catalogo": {
+    "vigencia_general": "Datos extraídos hoy (2026-09-25) de la web actual. NINGÚN precio publicado en la fuente, todos los precios = null (a completar por el cliente). Nombres/categorías reales, sin fecha de última edición visible.",
+    "categorias_web": [
+      "Productos químicos industriales", "Productos químicos de limpieza", "Productos químicos para piscinas",
+      "Cosmética del automotor", "Droguería industrial", "Artículos de limpieza",
+      "Reactivadores de pozos ciegos y cámaras sépticas (Descamiva, Daltonbac)"
+    ],
+    "subcategorias_limpieza": ["Desodorantes listos para usar", "Desodorantes concentrados para pisos", "Destapacañerías", "Líquido para lampazos", "Quitamanchas", "Repelentes", "Desinfectantes", "Ceras", "Lavandinas", "Cosmética para animales", "Detergentes", "Insecticidas", "Jabón en polvo", "Jabón líquido", "Lavamanos", "Desengrasantes", "Perfumes para ropa", "Suavizantes para ropa"],
+    "productos": [
+      {"nombre": "Descamiva (reactivador de pozos negros, bolsa 20 kg)", "categoria": "Pozos y cámaras sépticas", "descripcion": "Reactivador biológico para pozos negros; producto estrella y marca registrada", "precio": null, "imagen": "https://www.quimicadalton.com/images/stories/pozociego.png", "fuente": "web actual", "vigencia": "sin fecha"},
+      {"nombre": "Daltonbac", "categoria": "Pozos y cámaras sépticas", "descripcion": "Tratamiento biológico para cámaras sépticas", "precio": null, "imagen": null, "fuente": "web actual", "vigencia": "sin fecha"},
+      {"nombre": "Productos para piscinas (ej. Cloro para piscinas)", "categoria": "Piscinas", "descripcion": "Línea de químicos para piscinas; IG muestra 'Cloro PURO' y 'Cloro para piscinas'", "precio": null, "imagen": "https://www.quimicadalton.com/carrusel/productos-para-piscinas.gif", "fuente": "web + IG", "vigencia": "IG reciente"},
+      {"nombre": "Perfumes para ropa / Perfumes textiles", "categoria": "Limpieza", "descripcion": "Línea de perfumes textiles en varias fragancias", "precio": null, "imagen": "https://www.quimicadalton.com/carrusel/perfumes-para-ropa.gif", "fuente": "web + IG", "vigencia": "IG reciente"},
+      {"nombre": "Limpiamotores", "categoria": "Industrial / automotor", "descripcion": "Limpiador de motores", "precio": null, "imagen": "https://www.quimicadalton.com/carrusel/limpiamotores.gif", "fuente": "web actual", "vigencia": "sin fecha"},
+      {"nombre": "Lavamanos para grasitud extrema", "categoria": "Limpieza", "descripcion": "Lavamanos de uso industrial", "precio": null, "imagen": "https://www.quimicadalton.com/carrusel/lavamanos-para-grasitud-extrema.gif", "fuente": "web actual", "vigencia": "sin fecha"},
+      {"nombre": "Jabón líquido baja espuma", "categoria": "Limpieza", "descripcion": "Jabón líquido de baja espuma", "precio": null, "imagen": "https://www.quimicadalton.com/carrusel/jabon-liquido-baja-espuma.gif", "fuente": "web actual", "vigencia": "sin fecha"},
+      {"nombre": "Desmoldante para hormigón", "categoria": "Industrial", "descripcion": "Desmoldante para encofrados", "precio": null, "imagen": "https://www.quimicadalton.com/carrusel/desmoldante-para-hormigon.gif", "fuente": "web actual", "vigencia": "sin fecha"},
+      {"nombre": "Bases concentradas", "categoria": "Limpieza", "descripcion": "Bases concentradas para producción de limpiadores", "precio": null, "imagen": "https://www.quimicadalton.com/carrusel/bases-concentradas.gif", "fuente": "web actual", "vigencia": "sin fecha"},
+      {"nombre": "Soda cáustica", "categoria": "Droguería industrial", "descripcion": "Destacada en IG y en la web ('Soda Caustica en Córdoba')", "precio": null, "imagen": null, "fuente": "web + IG", "vigencia": "sin fecha"},
+      {"nombre": "Dispensers, secamanos eléctricos, bobinas de papel, servilletas", "categoria": "Artículos de limpieza / institucional", "descripcion": "Equipamiento para baños públicos y dispensers", "precio": null, "imagen": "https://www.quimicadalton.com/carrusel/dispensers.gif", "fuente": "web + IG", "vigencia": "IG reciente"}
+    ],
+    "drogueria_industrial_muestra": ["Bioetanol", "Amoniaco", "Soda cáustica", "Acetona", "Bicarbonato de sodio", "Escamas antihumedad", "Alcohol etílico", "Colorantes industriales", "Xileno", "Vaselina"],
+    "drogueria_industrial_nota": "La sección tiene ~100 ítems en 2 páginas; más de 1000 productos totales según la web. Precios no publicados.",
+    "imagenes_nota": "Las imágenes de la web son GIFs de baja calidad. Para el sitio nuevo conviene pedir packshots originales al cliente o tomarlos de IG (piezas gráficas) con su autorización. Convertir a WebP."
+  },
+
+  "pendientes_y_supuestos": [
+    "Horarios: placeholder",
+    "Google Maps/Business no revisado (horarios, reseñas, coordenadas)",
+    "Precios: ninguno publicado",
+    "Teléfono de fábrica: 351 894-9853 (web) vs 351 466-4934 (packaging); confirmar",
+    "Email: usar info@quimicadalton.com; el gmail del header parece con typo",
+    "Referencias visuales del rubro: pendientes",
+    "Facebook alternativo (id 100089879234089) no abierto"
+  ]
+}

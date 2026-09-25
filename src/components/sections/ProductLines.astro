@@ -1,0 +1,46 @@
+---
+import { PRODUCT_LINES } from '../../data/lines';
+import { storeHref } from '../../lib/url';
+import Icon from '../ui/Icon.astro';
+---
+
+<section id="lineas" class="section" aria-labelledby="lineas-title">
+  <div class="container">
+    <header class="section__head">
+      <p class="section__eyebrow">Qué fabricamos</p>
+      <h2 id="lineas-title" class="section__title">Seis líneas, un solo proveedor</h2>
+      <p class="section__lead">Elegí la línea y te llevamos a los productos. Si no encontrás lo que buscás, escribinos: tenemos más de mil.</p>
+    </header>
+
+    <ul class="lines">
+      {PRODUCT_LINES.map((line) => (
+        <li>
+          <a class="line" href={storeHref(`/${line.id}`)} style={`--c: ${line.color}`}>
+            <span class="line__icon"><Icon name={line.icon} size={28} /></span>
+            <span class="line__body">
+              <span class="line__name">{line.name}</span>
+              <span class="line__tag">{line.tagline}</span>
+              <span class="line__examples">{line.examples.join(' · ')}</span>
+            </span>
+            <span class="line__go" aria-hidden="true"><Icon name="arrow" size={20} /></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .lines { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  .line { position: relative; display: flex; gap: 1rem; align-items: flex-start; height: 100%; padding: 1.25rem; padding-right: 3.25rem; border: 1px solid var(--line); border-left: 6px solid var(--c); border-radius: var(--radius); background: #fff; text-decoration: none; transition: box-shadow 0.2s ease, transform 0.2s ease; }
+  .line:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+  .line__icon { flex-shrink: 0; display: grid; place-items: center; width: 3.25rem; height: 3.25rem; border-radius: 12px; background: color-mix(in srgb, var(--c) 14%, #fff); color: color-mix(in srgb, var(--c) 80%, #000); }
+  .line__body { display: grid; gap: 0.25rem; }
+  .line__name { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; line-height: 1; text-transform: uppercase; }
+  .line__tag { font-weight: 600; }
+  .line__examples { color: var(--ink-2); font-size: var(--fs-sm); }
+  .line__go { position: absolute; right: 1.1rem; top: 1.25rem; color: var(--c); transition: transform 0.15s; }
+  .line:hover .line__go { transform: translateX(3px); }
+  @media (min-width: 40rem) { .lines { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 64rem) { .lines { grid-template-columns: repeat(3, 1fr); } }
+</style>

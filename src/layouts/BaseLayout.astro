@@ -1,0 +1,58 @@
+---
+import '@fontsource/barlow-condensed/latin-700.css';
+import '@fontsource/barlow-condensed/latin-800.css';
+import '@fontsource-variable/inter/wght.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import { SITE } from '../data/site';
+import { buildStructuredData } from '../lib/seo';
+import { withBase } from '../lib/url';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import WhatsAppFab from '../components/layout/WhatsAppFab.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+const { title = SITE.title, description = SITE.description, noindex = false } = Astro.props;
+const siteUrl = new URL(withBase('/'), Astro.site).href;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(withBase('/og-image.png'), Astro.site).href;
+---
+
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b5cad" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {buildStructuredData(siteUrl).map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <Header />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppFab />
+  </body>
+</html>
