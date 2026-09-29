@@ -19,11 +19,12 @@ export const SITE = {
 } as const;
 
 /**
- * Tienda Nube: demo reutilizable "Valmō", reskineada con marca de Química Dalton.
- * Sin "www": ese subdominio tiene un error de SSL propio de Tiendanube (ver README).
+ * Tienda Nube: desvinculada (2026-09-29) por decisión del usuario, no le convenció
+ * el resultado del reskin de la demo "Valmō". Cuando haya una tienda que sí sirva,
+ * cargar su URL acá (sin barra final).
  */
 export const STORE = {
-  url: 'https://valmo.mitiendanube.com' as string | null,
+  url: null as string | null,
   fallbackAnchor: '#destacados',
 };
 
