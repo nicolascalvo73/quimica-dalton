@@ -18,9 +18,12 @@ export const SITE = {
   promo: { day: 'martes', label: 'Martes 10% de descuento' },
 } as const;
 
-/** Tienda Nube: cuando exista la tienda demo, cargar acá su URL (sin barra final). */
+/**
+ * Tienda Nube: demo reutilizable "Valmō", reskineada con marca de Química Dalton.
+ * Sin "www": ese subdominio tiene un error de SSL propio de Tiendanube (ver README).
+ */
 export const STORE = {
-  url: null as string | null,
+  url: 'https://valmo.mitiendanube.com' as string | null,
   fallbackAnchor: '#destacados',
 };
 

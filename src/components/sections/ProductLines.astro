@@ -15,7 +15,7 @@ import Icon from '../ui/Icon.astro';
     <ul class="lines">
       {PRODUCT_LINES.map((line) => (
         <li>
-          <a class="line" href={storeHref(`/${line.id}`)} style={`--c: ${line.color}`}>
+          <a class="line" href={storeHref()} style={`--c: ${line.color}`}>
             <span class="line__icon"><Icon name={line.icon} size={28} /></span>
             <span class="line__body">
               <span class="line__name">{line.name}</span>

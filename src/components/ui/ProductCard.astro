@@ -29,7 +29,7 @@ const thumb = await optimizeImage({ src: getImage(product.image), width: 120, fo
       <span>{product.unit}</span>
     </p>
     <div class="card__actions">
-      <a class="card__cta" href={storeHref(`/productos/${product.id}`)} aria-label={`Ver ${product.name} en la tienda`}>
+      <a class="card__cta" href={storeHref()} aria-label={`Ver ${product.name} en la tienda`}>
         Ver<span class="card__cta-long"> producto</span>
       </a>
       <button
