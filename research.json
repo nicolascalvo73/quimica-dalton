@@ -148,12 +148,10 @@
   },
 
   "pendientes_y_supuestos": [
-    "Horarios: placeholder",
-    "Google Maps/Business no revisado (horarios, reseñas, coordenadas)",
-    "Precios: ninguno publicado",
-    "Teléfono de fábrica: 351 894-9853 (web) vs 351 466-4934 (packaging); confirmar",
-    "Email: usar info@quimicadalton.com; el gmail del header parece con typo",
-    "Referencias visuales del rubro: pendientes",
-    "Facebook alternativo (id 100089879234089) no abierto"
+    "Horarios: resueltos con Google Maps (2026-09-25), ver bloque_1_datos_duros.horarios",
+    "Precios: siguen sin publicarse en ninguna fuente; el sitio y la tienda demo usan precios ficticios (price_is_placeholder) hasta que el cliente confirme la lista real",
+    "Teléfono de fábrica y email: el usuario (Mondi Studio) decidió (2026-09-29) usar los datos ya cargados (351 894-9853 / info@quimicadalton.com) sin más verificación con el cliente, aunque puedan ser incorrectos",
+    "Referencias visuales del rubro: resueltas, ver design.md §4 (puraquimica.com.ar, quimpro.com.ar)",
+    "Facebook alternativo (id 100089879234089) no abierto; no bloqueante"
   ]
 }
